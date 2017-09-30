@@ -1,0 +1,62 @@
+<div fxLayout="column">
+  <md-card class="weather-wrapper card">
+    <md-card-header>
+      <md-card-title>Weather for {{currentCity}}</md-card-title>
+    </md-card-header>
+    <md-card-content>
+      
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td><md-input-container class="full-width">
+            <input #cityName mdInput (keyup.enter)="getWeather(cityName.value)" placeholder="City">
+          </md-input-container></td>
+        </tr>
+      </table>
+      <div class="card-content">
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="current-day-forecast">
+            <div fxLayout="column">
+              <div class="day-name">
+                  Current
+              </div>
+              <div fxLayout="row">
+                <div class="weather-image">
+                  <img src="{{weatherPictureUrl}}" alt="weather image" mdTooltip="{{description}}">
+                </div>
+                <div class="temperature">
+                  {{temp}}<span>°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <div *ngFor="let item of weekForecast" fxLayout="column" class="weekly-forecast">
+              <div class="day-name">
+                {{item.dayName}}
+              </div>
+              <div class="weather-image">
+                <img src="{{item.weatherPictureUrl}}" alt="weather image" mdTooltip="{{item.descriptionLocal}}">
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div class="temperature day" >
+                  {{item.maxLocal}}<span>°</span>
+                </div>
+                <div class="temperature night">
+                  {{item.minLocal}}<span>°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-card-content>
+    <!--<md-card-actions>
+      <button class="send-button" md-fab (click)="getWeather(cityName.value)"><md-icon>check</md-icon></button>
+    </md-card-actions>-->
+  </md-card>
+  <div>
+    <button class="send-button" md-fab (click)="getWeather(cityName.value)"><md-icon>check</md-icon></button>
+  </div>
+</div>
+
+

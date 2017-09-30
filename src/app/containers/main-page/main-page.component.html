@@ -1,0 +1,44 @@
+<div fxFlexFill fxLayout="column">
+  <md-toolbar class="main-toolbar" color="primary">
+      <button type="button" md-button (click)="sidenav.toggle()">
+          <md-icon>menu</md-icon>
+      </button>
+  
+    <!--  <button type="button" md-button (click)="toggleSidenav()">
+          <md-icon>menu</md-icon>
+      </button>-->
+      <span>{{title}}</span>
+      <span class="example-spacer"></span>
+  </md-toolbar>
+  
+  <md-sidenav-container fxFlex class="container">
+  
+    <md-sidenav 
+      #sidenav 
+      class="sidenav-wrapper"
+      mode="side"
+      [opened]="!media.isActive('xs')">
+  
+      <md-nav-list class="sidebar-list-container">
+        <md-list-item
+          *ngFor="let linkItem of linkItems"
+          [ngClass]="linkItem.className"
+          routerLink="{{linkItem.routerLink}}"
+          routerLinkActive="selected">
+         {{linkItem.linkName}}
+        </md-list-item >
+      </md-nav-list>
+  
+    </md-sidenav>
+    <div  fxLayout="column"
+          fxFlexFill
+          class="sidenav-content">
+      <div class="main-content-wrapper" fxFlex="calc(100% - 64px)">
+        <ng-content>
+        </ng-content>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  
+  </md-sidenav-container>
+</div>
